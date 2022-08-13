@@ -75,5 +75,22 @@ def pagerank(x, df=0.85, max_iter=30):
         R = df * (A * R) + bias
     return R
   
+  
+  
+  
+  # 단순히 getTitle, getDate
+  # Title은 맨 위에 있다고 가정
+  
+def getDate(text):
+  date_regex = "([0-9]{4}[\/. ((?!년).)*$]{1,3}[0-9]{1,2}[\/. ((?!월).)*$]{1,3}[0-9]{1,2}[\/. ((?!일).)*$]{0,2})"
+  m = re.search(date_regex, text)
+  if m == None:
+    return "날짜 정보 없음"
+  return m.group(0).strip()
+
+def getTitle(text):
+  enter = "\n"
+  idx = text.find(enter)
+  return text[:idx]
 
 
